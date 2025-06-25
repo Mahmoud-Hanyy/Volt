@@ -1,7 +1,26 @@
+*{
+  font-family: 'poppins', sans-serif;
+}
 body {
   background-color: #f8f9fa;
   color: #ffbc28;
 }
 .card-title {
   font-size: 1.1rem;
+}
+table img {
+  object-fit: cover;
+  height: 60px;
+}
+img[alt="Volt Electronics"] {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+}
+footer {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+h1, h2, h5 {
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
 }

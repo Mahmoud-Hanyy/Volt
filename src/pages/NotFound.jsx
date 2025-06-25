@@ -1,12 +1,14 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-6xl font-bold text-gray-800">404</h1>
-      <p className="mt-4 text-xl text-gray-600">Page Not Found</p>
-      <a href="/" className="mt-6 text-blue-500 hover:underline">
-        Go back to Home
-      </a>
+    <div className="text-center mt-5">
+      <h1 className="display-4">404</h1>
+      <p className="lead">Oops! Page not found.</p>
+      <Link to="/" className="btn btn-primary mt-3">Go to Homepage</Link>
     </div>
   );
 }
+
 export default NotFound;
