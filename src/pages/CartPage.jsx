@@ -21,7 +21,7 @@ function CartPage() {
         </p>
       ) : (
         <>
-          <div className="row gy-4">
+          <div className="row gy-4"> // Changeable
             {cart.map((item) => (
               <div key={item.id} className="col-lg-12">
                 <div className="card shadow-sm p-3 d-flex flex-column flex-md-row align-items-center justify-content-between">
