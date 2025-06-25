@@ -1,71 +1,91 @@
-import React from 'react';
-import { useCart } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useCart } from "../context/CartContext";
 
 function CartPage() {
-  const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-  if (cart.length === 0) {
-    return (
-      <div className="text-center mt-5">
-        <h2>Your cart is empty 🛒</h2>
-        <Link to="/products" className="btn btn-primary mt-3">Browse Products</Link>
-      </div>
-    );
-  }
+  const total = cart
+    .reduce((sum, item) => sum + item.price * item.quantity, 0)
+    .toFixed(2);
 
   return (
-    <div>
-      <h2 className="mb-4">🛒 Your Cart</h2>
-      <table className="table table-bordered">
-        <thead className="table-dark">
-          <tr>
-            <th>Product</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Subtotal</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cart.map(item => (
-            <tr key={item.id}>
-              <td>
-                <div className="d-flex align-items-center">
-                  <img src={item.thumbnail} alt={item.title} width="60" className="me-2 rounded" />
-                  <span>{item.title}</span>
-                </div>
-              </td>
-              <td style={{ width: '120px' }}>
-                <input
-                  type="number"
-                  className="form-control"
-                  value={item.quantity}
-                  min={1}
-                  onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
-                />
-              </td>
-              <td>${item.price}</td>
-              <td>${item.price * item.quantity}</td>
-              <td>
-                <button className="btn btn-sm btn-danger" onClick={() => removeFromCart(item.id)}>
-                  Remove
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div
+      className="container py-5"
+      style={{ fontFamily: "Poppins, sans-serif" }}
+    >
+      <h2 className="fw-bold mb-4 text-center">Shopping Cart</h2>
 
-      <div className="d-flex justify-content-between align-items-center">
-        <h4>Total: ${totalPrice.toFixed(2)}</h4>
-        <div>
-          <button className="btn btn-outline-danger me-2" onClick={clearCart}>Clear Cart</button>
-          <button className="btn btn-success">Proceed to Checkout</button>
-        </div>
-      </div>
+      {cart.length === 0 ? (
+        <p className="text-center text-muted">
+          Your cart is currently empty 🛒
+        </p>
+      ) : (
+        <>
+          <div className="row gy-4">
+            {cart.map((item) => (
+              <div key={item.id} className="col-lg-12">
+                <div className="card shadow-sm p-3 d-flex flex-column flex-md-row align-items-center justify-content-between">
+                  <div className="d-flex align-items-center mb-3 mb-md-0 text-center text-md-start">
+                    <img
+                      src={item.thumbnail}
+                      alt={item.title}
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                        objectFit: "contain",
+                        marginRight: "20px",
+                      }}
+                    />
+                    <div>
+                      <h5 className="mb-1">{item.title}</h5>
+                      <p className="mb-0 fw-bold">${item.price.toFixed(2)}</p>
+                    </div>
+                  </div>
+
+                  <div className="d-flex align-items-center mb-2 mb-md-0">
+                    <button
+                      className="btn btn-outline-secondary btn-sm me-2"
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      disabled={item.quantity <= 1}
+                    >
+                      −
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button
+                      className="btn btn-outline-secondary btn-sm ms-2"
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    >
+                      ＋
+                    </button>
+                  </div>
+
+                  <div className="text-center text-md-end">
+                    <p className="fw-bold mb-1">
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </p>
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-end mt-4">
+            <h4>
+              Total: <span className="fw-bold">${total}</span>
+            </h4>
+            <button className="btn btn-success me-2 mt-2">Checkout</button>
+            <button className="btn btn-outline-danger mt-2" onClick={clearCart}>
+              Clear Cart
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

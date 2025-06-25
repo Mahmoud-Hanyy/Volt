@@ -38,6 +38,7 @@ function Products() {
   return (
     <div className="products-page">
       <div className="text-center mb-5">
+        <br/>
         <h2 className="fw-bold">Electronics Collection</h2>
         <p className="text-muted">Top-quality gadgets and gear at unbeatable prices.</p>
       </div>
