@@ -23,11 +23,11 @@ function Home() {
             { title: 'TVs', icon: '📺' },
             { title: 'Accessories', icon: '🎧' },
           ].map(({ title, icon }) => (
-            <div key={title} className="col-sm-6 col-md-3 mb-4">
+            <div key={title} className="col-sm-6 col-md-3 mb-4" >
               <div className="card h-100 shadow-sm border-0">
                 <div className="card-body text-center">
                   <div style={{ fontSize: '2rem' }}>{icon}</div>
-                  <h5 className="card-title mt-2">{title}</h5>
+                  <h5 className="card-title mt-2 ">{title}</h5>
                 </div>
               </div>
             </div>
@@ -36,7 +36,7 @@ function Home() {
       </section>
 
       {/* Why Volt */}
-      <section className="bg py-5" style={{backgroundColor: '#f8f9fa'}}>
+      <section className="bg py-5">
         <div className="container">
           <h2 className="mb-5">Why Shop with <span style={{color:'#ffbc28'}}>Volt ?</span></h2>
           <div className="row">

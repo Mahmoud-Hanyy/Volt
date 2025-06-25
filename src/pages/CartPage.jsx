@@ -17,7 +17,7 @@ function CartPage() {
 
       {cart.length === 0 ? (
         <p className="text-center text-muted">
-          Your cart is currently empty 🛒
+          Your cart is currently empty
         </p>
       ) : (
         <>
@@ -74,7 +74,7 @@ function CartPage() {
               </div>
             ))}
           </div>
-          
+
           <div className="text-end mt-4">
             <h4>
               Total: <span className="fw-bold">${total}</span>
