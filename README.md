@@ -18,7 +18,7 @@
 
 - Responsive navbar with logo and counters
 - Product cards with image, title, price, and action buttons
-- Custom styled Cart and Wishlist pages
+- Custom-styled Cart and Wishlist pages
 - Lottie animation on empty search
 - Sticky footer and properly aligned elements
 
@@ -57,7 +57,7 @@ src/
 
 ## 🔗 Live Demo
 
-> Deployed on [Vercel](https://volt-neon.vercel.app/) — link coming soon!
+> Deployed on [Vercel](https://volt-neon.vercel.app/)
 
 ## 📦 API Used
 
