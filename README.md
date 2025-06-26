@@ -1,79 +1,92 @@
+# Volt - React E-Commerce App for Electronics
 
-# ⚡ Volt – E-Commerce App for Electronics
+**Volt** is a modern, responsive e-commerce web application for selling electronics, built with React and Bootstrap. The project showcases dynamic routing, real-time cart/wishlist management, API integration, and clean UI/UX. It’s optimized for both desktop and mobile experiences.
 
-**Volt** is a sleek and fully responsive e-commerce web application built using React and Bootstrap. Designed for tech lovers, Volt allows users to explore, search, and shop a wide range of electronics. With intuitive UI, shopping cart functionality, and modern design, Volt offers a lightning-fast and smooth shopping experience.
+## 🚀 Features
 
-## 🚀 Live Demo
+- 💡 **Modern UI**: Built with Bootstrap 5 and styled with Poppins font.
+- 🛒 **Cart Functionality**: Add, remove, and update item quantities.
+- ❤️ **Wishlist System**: Add or remove items with visual badge counts.
+- 📦 **Product Filtering**: Pulls only electronics products from Fake Store API.
+- 🔍 **Search & Animation**: Integrated search bar with Lottie animation for no results.
+- ✅ **Responsive Design**: Clean layout across all screen sizes.
+- 🔧 **Custom Hooks & Context API**: Centralized cart and wishlist logic.
+- 💳 **Checkout Summary**: View total and proceed to checkout (static UI).
+- 🔄 **Error-Free Mobile Navbar**: Pure React-based toggle without Bootstrap JS bugs.
 
-[🔗 View Demo (Coming Soon)]()
+## 🖼️ UI Preview
+
+- Responsive navbar with logo and counters
+- Product cards with image, title, price, and action buttons
+- Custom styled Cart and Wishlist pages
+- Lottie animation on empty search
+- Sticky footer and properly aligned elements
+
+## 🛠️ Tech Stack
+
+- React (via Vite)
+- React Router
+- Bootstrap 5 (CSS only)
+- Context API for state management
+- Fake Store API for data
+- Lottie for loading animations
+
+## 🧱 Folder Structure
+
+```bash
+src/
+├── components/
+│   ├── Navbar.jsx
+│   ├── ProductCard.jsx
+│   ├── Cart.jsx
+│   └── Footer.jsx
+├── pages/
+│   ├── Home.jsx
+│   ├── Products.jsx
+│   ├── CartPage.jsx
+│   ├── WishlistPage.jsx
+│   └── NotFound.jsx
+├── context/
+│   └── CartContext.jsx
+├── App.jsx
+├── index.js
+└── assets/
+    ├── Styles
+    └── Animations
+```
+
+## 🔗 Live Demo
+
+> Deployed on [Vercel](https://volt-neon.vercel.app/) — link coming soon!
+
+## 📦 API Used
+
+[**https://fakestoreapi.com/products/category/electronics**](https://fakestoreapi.com/products/category/electronics)
+
+## 📄 How to Use
+
+1. Clone the repo
+2. Run `npm install`
+3. Run `npm run dev`
+4. Visit `localhost:5173`
+
+## 🧠 Author Insight
+
+This project was built step-by-step to master:
+
+- React Context API for managing cart/wishlist
+- Clean, component-based design patterns
+- Responsive UIs with Bootstrap in React
+- Integration with external APIs and animations
+- Vercel deployment and environment preparation
 
 ---
 
-## ⚡ Features
+## 🧑‍💻 Author
 
-- ✅ Responsive design across all screen sizes
-- 🔍 Search and browse electronics from an external API
-- 🛒 Add to cart with quantity control
-- 🧭 Seamless navigation using React Router
-- 🗃️ Persistent cart using `localStorage`
-- 💅 Styled with Bootstrap for a clean, professional UI
-- 💳 Checkout page UI (no payment integration yet)
+Mahmoud Hany
 
 ---
 
-## 🔧 Tech Stack
+**If you like the project, give it a star ⭐ and feel free to fork.**
 
-| Tool         | Usage                          |
-|--------------|--------------------------------|
-| React        | Front-end framework            |
-| Bootstrap    | UI styling framework           |
-| React Router | Client-side routing            |
-| DummyJSON API| Product data source            |
-| useContext   | Global state for cart          |
-| localStorage | Cart persistence               |
-
----
-
-## 🧪 Getting Started
-
-\`\`\`bash
-# Clone the repository
-git clone https://github.com/your-username/volt.git
-cd volt
-
-# Install dependencies
-npm install
-
-# Start development server
-npm start
-\`\`\`
-
----
-
-## 📡 API Used
-
-- [DummyJSON Products API](https://dummyjson.com/products) – mock e-commerce product data for testing and prototyping.
-
----
-
-## 📈 Future Enhancements
-
-- 🔐 User authentication (login/register)
-- 📦 Order history & confirmation page
-- 📊 Admin dashboard (product management)
-- 📚 Filtering, sorting & categories
-- 💸 Payment gateway integration (e.g., Stripe)
-
----
-
-## 👨‍💻 About the Developer
-
-**Mahmoud Hany**  
-Software Engineer  
-[LinkedIn](https://www.linkedin.com/in/mahmoud-hanyy/) | [GitHub](https://github.com/Mahmoud-Hanyy)
-
----
-
-## 📄 License
-
-This project is open-source under the [MIT License](LICENSE).
