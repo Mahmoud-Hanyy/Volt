@@ -1,11 +1,17 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import logo from "../assets/logo.png";
+import logo from "../assets/Images/logo.png";
 
-function Navbar() {
+function NavBar() {
   const { cart, wishlist } = useCart();
-  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
@@ -15,7 +21,7 @@ function Navbar() {
           to="/"
           style={{ fontFamily: "Poppins, sans-serif" }}
         >
-          <img
+           <img
             src={logo}
             alt="Volt Logo"
             height="40"
@@ -28,30 +34,29 @@ function Navbar() {
           />
         </Link>
 
+        {/* Toggle Button */}
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
+          onClick={toggleMenu}
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul
-            className="navbar-nav ms-auto"
-            style={{ fontFamily: "Poppins, sans-serif" }}
-          >
+        {/* Collapsible Menu */}
+        <div
+          className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
+          id="navbarNav"
+        >
+          <ul className="navbar-nav ms-auto" style={{ fontFamily: "Poppins, sans-serif" }}>
             <li className="nav-item">
-              <Link className="nav-link" to="/products">
+              <Link className="nav-link" to="/products" onClick={() => setIsOpen(false)}>
                 Shop
               </Link>
             </li>
             <li className="nav-item position-relative">
-              <Link className="nav-link" to="/wishlist">
+              <Link className="nav-link" to="/wishlist" onClick={() => setIsOpen(false)}>
                 Wishlist
                 {wishlist.length > 0 && (
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -61,7 +66,7 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item position-relative">
-              <Link className="nav-link" to="/cart">
+              <Link className="nav-link" to="/cart" onClick={() => setIsOpen(false)}>
                 Cart
                 {cartCount > 0 && (
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
@@ -77,4 +82,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavBar;

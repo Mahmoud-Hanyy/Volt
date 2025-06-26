@@ -1,39 +1,40 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "../components/ProductCard";
+import Lottie from "lottie-react";
+import searchAnimation from "../assets/animations/load.json";
 import { useCart } from "../context/CartContext";
+import ProductCard from "../components/ProductCard";
 
 function Products() {
-  const { addToCart } = useCart();
   const [products, setProducts] = useState([]);
-  const [filtered, setFiltered] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const { addToCart, toggleWishlist } = useCart();
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
+
+  const handleToggleWishlist = (id) => {
+    toggleWishlist(id);
+  };
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products/category/electronics")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
-        setFiltered(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+        setLoading(false);
       });
   }, []);
 
-  useEffect(() => {
-    if (search.trim() === "") {
-      setFiltered(products);
-    } else {
-      const result = products.filter((p) =>
-        p.title.toLowerCase().includes(search.toLowerCase()),
-      );
-      setFiltered(result);
-    }
-  }, [search, products]);
-
-  const handleAddToCart = (product) => {
-    addToCart({
-      ...product,
-      thumbnail: product.image, // remap for consistency
-    });
-  };
+  const filtered = products.filter((product) =>
+    product.title.toLowerCase().includes(search.toLowerCase()),
+  );
 
   return (
     <div className="products-page">
@@ -52,20 +53,33 @@ function Products() {
             className="form-control shadow-sm"
             placeholder="Search electronics..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)} // Changeable
+            onChange={(e) => setSearch(e.target.value)}
             style={{ fontFamily: "Poppins, sans-serif" }}
           />
         </div>
       </div>
-
       <div className="container">
         <div className="row">
-          {filtered.length > 0 ? (
+          {loading ? (
+            <div
+              className="d-flex justify-content-center align-items-center w-100"
+              style={{ height: "300px" }}
+            >
+              <Lottie
+                animationData={searchAnimation}
+                loop={true}
+                style={{ height: 200 }}
+              />
+            </div>
+          ) : filtered.length > 0 ? (
             filtered.map((product) => (
               <ProductCard
                 key={product.id}
                 product={{ ...product, thumbnail: product.image }}
-                onAddToCart={handleAddToCart}
+                onAddToCart={() =>
+                  handleAddToCart({ ...product, thumbnail: product.image })
+                }
+                onToggleWishlist={() => handleToggleWishlist(product.id)}
               />
             ))
           ) : (
